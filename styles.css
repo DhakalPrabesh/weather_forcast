@@ -1,0 +1,170 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Header */
+.header {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    padding: 1.5rem 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.digital-clock {
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+    font-weight: 300;
+}
+
+/* Search Container */
+.search-container {
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+#city-input {
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    width: 300px;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    outline: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease-in-out;
+}
+
+#city-input::placeholder {
+    color: #ccc;
+    font-style: italic;
+}
+
+#city-input:focus {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+#search-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+#search-button:hover {
+    background: linear-gradient(135deg, #2575fc, #6a11cb);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+}
+
+/* Suggestions */
+.suggestions {
+    width: 300px;
+    max-height: 150px;
+    overflow-y: auto;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    z-index: 1000;
+}
+
+.suggestion-item {
+    padding: 0.8rem;
+    cursor: pointer;
+    color: #fff;
+    transition: background 0.3s ease;
+}
+
+.suggestion-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Weather Card */
+.weather-card {
+    background: rgba(255, 255, 255, 0.1);
+    width: 300px;
+    padding: 1.5rem;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    margin-top: 1rem;
+    color: #fff;
+}
+
+.weather-card h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    color: #6a11cb;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.weather-card p {
+    margin: 0.5rem 0;
+    font-size: 1.1rem;
+}
+
+/* Footer */
+.footer {
+    margin-top: auto;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Dark Mode */
+body.dark {
+    background: linear-gradient(135deg, #1e1e1e, #3a3a3a);
+    color: #ddd;
+}
+
+body.dark .header,
+body.dark .footer {
+    background: rgba(0, 0, 0, 0.3);
+    color: #ddd;
+}
+
+body.dark #city-input {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+body.dark .weather-card {
+    background: rgba(0, 0, 0, 0.5);
+}
