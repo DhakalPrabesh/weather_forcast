@@ -15,7 +15,7 @@ document.getElementById('search-button').addEventListener('click', function () {
 
 // Fetch Weather Data
 async function fetchWeatherData(city) {
-    const apiKey = '3a4cb45083d2177ef4355c5100f965ee'; // Replace with your API key
+    const apiKey = 'leaked_api_key==>REMOVED'; // Replace with your API key
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
     try {
