@@ -38,31 +38,36 @@ async function fetchWeatherData(city) {
 function displayWeather(data) {
     const weatherCard = document.getElementById('weather-card');
     const weatherCondition = data.weather[0].main.toLowerCase();
-
+    
     // Determine GIF based on weather condition
     let weatherGif;
     if (weatherCondition.includes('rain')) {
-        weatherGif = 'https://media.giphy.com/media/n0Zt16UrMKNFu/giphy.gif'; // Rain GIF
+        weatherGif = 'https://media.giphy.com/media/n0Zt16UrMKNFu/giphy.gif';
     } else if (weatherCondition.includes('cloud')) {
-        weatherGif = 'https://media.giphy.com/media/xTkcEQACH24SMPxIQg/giphy.gif'; // Cloudy GIF
+        weatherGif = 'https://media.giphy.com/media/xTkcEQACH24SMPxIQg/giphy.gif';
     } else if (weatherCondition.includes('sun') || data.main.temp > 25) {
-        weatherGif = 'https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif'; // Sunny GIF
+        weatherGif = 'https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif';
     } else if (weatherCondition.includes('snow')) {
-        weatherGif = 'https://media.giphy.com/media/3o7TKP9lnzHvjz2RDi/giphy.gif'; // Snow GIF
+        weatherGif = 'https://media.giphy.com/media/3o7TKP9lnzHvjz2RDi/giphy.gif';
     } else {
-        weatherGif = 'https://media.giphy.com/media/3oEjHLzm4BCF8zfPyU/giphy.gif'; // Default weather GIF
+        weatherGif = 'https://media.giphy.com/media/3oEjHLzm4BCF8zfPyU/giphy.gif';
     }
 
     // Update weather card with data and animation
     weatherCard.innerHTML = `
-        <img src="${weatherGif}" alt="Weather Animation" style="width: 100%; border-radius: 20px; margin-bottom: 1rem;" />
+        <div class="weather-animation">
+            <img src="${weatherGif}" alt="Weather Animation" />
+        </div>
         <h2>${data.name}</h2>
-        <p><strong>Temperature:</strong> ${data.main.temp} °C</p>
-        <p><strong>Condition:</strong> ${data.weather[0].description}</p>
-        <p><strong>Humidity:</strong> ${data.main.humidity}%</p>
-        <p><strong>Wind Speed:</strong> ${data.wind.speed} m/s</p>
+        <p><span>Temperature</span> <span>${data.main.temp}°C</span></p>
+        <p><span>Condition</span> <span>${data.weather[0].description}</span></p>
+        <p><span>Humidity</span> <span>${data.main.humidity}%</span></p>
+        <p><span>Wind Speed</span> <span>${data.wind.speed} m/s</span></p>
     `;
-    weatherCard.style.display = 'block'; // Make the card visible
+    weatherCard.style.display = 'block';
+
+    // Add this line to update animations
+    updateWeatherAnimations(weatherCondition);
 }
 
 // Digital Clock
@@ -97,3 +102,72 @@ cityInput.addEventListener('input', function () {
         });
     }
 });
+
+// Add this function to create rain drops
+function createRainDrops() {
+    const rainContainer = document.getElementById('rain-container');
+    const numberOfDrops = 50;
+
+    for (let i = 0; i < numberOfDrops; i++) {
+        const drop = document.createElement('div');
+        drop.className = 'rain';
+        drop.style.left = `${Math.random() * 100}%`;
+        drop.style.animationDelay = `${Math.random() * 2}s`;
+        drop.style.opacity = Math.random();
+        rainContainer.appendChild(drop);
+    }
+}
+
+// Add this to your weather display function to show/hide animations based on weather
+function updateWeatherAnimations(weatherCondition) {
+    const sun = document.querySelector('.sun');
+    const clouds = document.querySelectorAll('.cloud');
+    const rainContainer = document.getElementById('rain-container');
+
+    // Reset all animations
+    sun.style.display = 'none';
+    clouds.forEach(cloud => cloud.style.display = 'none');
+    rainContainer.style.display = 'none';
+
+    // Show relevant animations based on weather
+    if (weatherCondition.includes('clear')) {
+        sun.style.display = 'block';
+    } else if (weatherCondition.includes('cloud')) {
+        clouds.forEach(cloud => cloud.style.display = 'block');
+    } else if (weatherCondition.includes('rain')) {
+        clouds.forEach(cloud => cloud.style.display = 'block');
+        rainContainer.style.display = 'block';
+        createRainDrops();
+    }
+}
+
+// Initialize rain drops
+createRainDrops();
+
+// Add this function to create stars
+function createStars() {
+    const starsContainer = document.getElementById('stars-container');
+    const numberOfStars = 100;
+
+    for (let i = 0; i < numberOfStars; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.top = `${Math.random() * 100}%`;
+        star.style.animationDelay = `${Math.random() * 1}s`;
+        starsContainer.appendChild(star);
+    }
+}
+
+// Call this function when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+    createStars();
+});
+
+// Update the background color based on time
+function updateSkyColor() {
+    document.body.style.animation = 'skyColors 30s linear infinite';
+}
+
+// Initialize the sky color animation
+updateSkyColor();
